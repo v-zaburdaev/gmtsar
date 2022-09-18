@@ -39,9 +39,9 @@ jobs:
         # Generate locale
         sudo locale-gen en_US.UTF-8
         # Export env vars
-        sudo echo "export LC_ALL=en_US.UTF-8" >> /root/.bashrc
-        sudo echo "export LANG=en_US.UTF-8" >> /root/.bashrc
-        sudo echo "export LANGUAGE=en_US.UTF-8" >> /root/.bashrc
+        #sudo echo "export LC_ALL=en_US.UTF-8" >> /root/.bashrc
+        #sudo echo "export LANG=en_US.UTF-8" >> /root/.bashrc
+        #sudo echo "export LANGUAGE=en_US.UTF-8" >> /root/.bashrc
 
         # https://github.com/gmtsar/gmtsar/wiki/GMTSAR-Wiki-Page
         sudo apt install -y csh subversion autoconf libtiff5-dev libhdf5-dev wget
@@ -55,12 +55,12 @@ jobs:
         # fix for missed "gs" utility and git and make tools
         sudo apt install -y git make
 
-        cd $(dirname "$GMTSAR")
-        git clone --branch "$BRANCH" "$GIT" GMTSAR
-        cd GMTSAR
-        autoconf
-        ./configure --with-orbits-dir=/tmp
-        make
+        sudo cd $(dirname "$GMTSAR")
+        sudo git clone --branch "$BRANCH" "$GIT" GMTSAR
+        sudo cd GMTSAR
+        sudo autoconf
+        sudo ./configure --with-orbits-dir=/tmp
+        sudo make
         sudo make install
         python -m pip install --upgrade pip
         pip install h5py netcdf4 h5netcdf \
