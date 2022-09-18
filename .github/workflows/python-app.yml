@@ -35,9 +35,9 @@ jobs:
         sudo apt -y upgrade
         sudo apt install -y locales
         # Uncomment en_US.UTF-8 for inclusion in generation
-        sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
+        sudo sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
         # Generate locale
-        locale-gen en_US.UTF-8
+        sudo locale-gen en_US.UTF-8
         # Export env vars
         echo "export LC_ALL=en_US.UTF-8" >> /root/.bashrc
         echo "export LANG=en_US.UTF-8" >> /root/.bashrc
@@ -61,16 +61,24 @@ jobs:
         autoconf
         ./configure --with-orbits-dir=/tmp
         make
-        make install
+        sudo make install
         python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install h5py netcdf4 h5netcdf \
+          rasterio rioxarray numpy \
+          scikit-image scipy sklearn \
+          xarray dask distributed zarr nc-time-axis \
+          pandas geopandas \
+          sentineleof elevation \
+          matplotlib seaborn geoviews hvplot datashader bokeh \
+          xmltodict joblib tqdm
+        cd /usr/local/GMTSAR/pygmtsar && pip install -e pygmtsar
+        # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        # flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
         pytest
