@@ -30,6 +30,8 @@ jobs:
         GIT=https://github.com/gmtsar/gmtsar
         BRANCH=master
 
+        sudo pip3 install click --upgrade
+
         # prepare system
         sudo apt update
         sudo apt -y upgrade
@@ -54,14 +56,16 @@ jobs:
         sudo apt install -y gmt
         # fix for missed "gs" utility and git and make tools
         sudo apt install -y git make    
-    - name: Compile libs
+    - name: Compile GMTSAR
       run: |        
-        sudo autoconf
-        sudo ./configure --with-orbits-dir=/tmp
-        sudo make
-        sudo make install
+        autoconf
+        ./configure --with-orbits-dir=/tmp
+        make
+        make install
         export PATH=$PATH:/home/runner/work/gmtsar/gmtsar/bin
-        sudo pip3 install -e ./pygmtsar/
+    - name: Install PyGMTSAR
+      run: |
+        pip3 install -e ./pygmtsar/
         echo "Start gmtsar_sharedir.csh"
         gmtsar_sharedir.csh
         
@@ -75,7 +79,7 @@ jobs:
       working-directory: tests
       run: |      
         python3 ./S1A_Stack_CPGF_T173.py
-        sudo export PATH=$PATH:/home/runner/work/gmtsar/gmtsar/bin; python3 ./S1A_Stack_CPGF_T173.py
+        №sudo export PATH=$PATH:/home/runner/work/gmtsar/gmtsar/bin; python3 ./S1A_Stack_CPGF_T173.py
         
 #     - name: Install python dependencies
 #       run: |
