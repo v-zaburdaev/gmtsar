@@ -58,7 +58,6 @@ jobs:
     - name: Compile libs
       working-directory: ./GMTSAR
       run: |
-        sudo cd GMTSAR
         sudo autoconf
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
