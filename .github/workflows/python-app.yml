@@ -26,6 +26,7 @@ jobs:
         
     - name: Install python dependencies
       run: |
+        ls -l
         pip install wheel h5py netcdf4 h5netcdf \        
           rasterio rioxarray numpy \
           scikit-image scipy sklearn \
