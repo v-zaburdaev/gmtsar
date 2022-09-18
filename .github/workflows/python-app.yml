@@ -54,15 +54,16 @@ jobs:
         sudo apt install -y gmt
         # fix for missed "gs" utility and git and make tools
         sudo apt install -y git make
-        sudo git clone --branch "$BRANCH" "$GIT" GMTSAR
+        
     - name: Compile libs
       working-directory: /GMTSAR
       run: |
+        sudo git clone --branch "$BRANCH" "$GIT" ./
         sudo autoconf
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
         sudo make install
-        sudo pip install -e /GMTSAR/pygmtsar
+        sudo pip install -e ./pygmtsar
 #     - name: Install python libs
 #       working-directory: /GMTSAR/pygmtsar
 #       run: |
