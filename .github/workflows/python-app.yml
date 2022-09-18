@@ -62,11 +62,11 @@ jobs:
         sudo make install
         ls -l ./
         ls -l ./pygmtsar/
-        sudo pip install -e ./pygmtsar/
+        sudo pip3 install -e ./pygmtsar/
     - name: Install python dependencies
       run: |
         ls -l
-        sudo pip install wheel h5py netcdf4 h5netcdf \        
+        sudo python3 -m pip install wheel h5py netcdf4 h5netcdf \        
           rasterio rioxarray numpy \
           scikit-image scipy sklearn \
           xarray dask distributed zarr nc-time-axis \
