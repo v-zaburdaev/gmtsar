@@ -62,11 +62,11 @@ jobs:
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
         sudo make install
-        pip install -e ./GMTSAR/pygmtsar
-#     - name: Install python libs
-#       working-directory: ./GMTSAR/pygmtsar
-#       run: |
-#           sudo pip install -e pygmtsar
+        #pip install -e ./GMTSAR/pygmtsar
+    - name: Install python libs
+      working-directory: ./GMTSAR/pygmtsar
+      run: |
+          sudo pip install -e pygmtsar
     - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
