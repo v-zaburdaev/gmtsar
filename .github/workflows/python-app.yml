@@ -55,9 +55,13 @@ jobs:
         # fix for missed "gs" utility and git and make tools
         sudo apt install -y git make
         
-    - name: Compile libs
+    - name: Clone libs
       run: |
-        sudo git clone --branch master https://github.com/gmtsar/gmtsar ./
+        sudo git clone --branch master https://github.com/gmtsar/gmtsar GMTSAR
+
+    - name: Compile libs
+      working-directory: GMTSAR
+      run: |        
         sudo autoconf
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
