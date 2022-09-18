@@ -54,14 +54,17 @@ jobs:
         sudo apt install -y gmt
         # fix for missed "gs" utility and git and make tools
         sudo apt install -y git make
-
-        sudo cd $(dirname "$GMTSAR")
         sudo git clone --branch "$BRANCH" "$GIT" GMTSAR
+    - name: Compile libs
+      working-directory: ./GMTSAR
+      run: |
         sudo cd GMTSAR
         sudo autoconf
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
         sudo make install
+    - name: Install python dependencies
+      run: |
         python -m pip install --upgrade pip
         pip install h5py netcdf4 h5netcdf \
           rasterio rioxarray numpy \
