@@ -62,6 +62,9 @@ jobs:
         sudo make install
         export PATH=$PATH:/home/runner/work/gmtsar/gmtsar/bin
         sudo pip3 install -e ./pygmtsar/
+        gmtsar_sharedir.csh
+        ls -l /home/runner/work/gmtsar/gmtsar/bin
+        la -l /home/runner/work/gmtsar/gmtsar
     - name: Download datasets
       working-directory: tests
       run: |
