@@ -63,14 +63,18 @@ jobs:
         ls -l ./
         ls -l ./pygmtsar/
         sudo pip3 install -e ./pygmtsar/
-    - name: Install python dependencies
+    - name: Run tests
       run: |
-        ls -l
-        sudo python3 -m pip install wheel h5py netcdf4 h5netcdf \        
-          rasterio rioxarray numpy \
-          scikit-image scipy sklearn \
-          xarray dask distributed zarr nc-time-axis \
-          pandas geopandas \
-          sentineleof elevation \
-          matplotlib seaborn geoviews hvplot datashader bokeh \
-          xmltodict joblib tqdm        
+        sudo python3 ./tests/S1A_Stack_CPGF_T173.py
+        
+#     - name: Install python dependencies
+#       run: |
+#         ls -l
+#         sudo python3 -m pip install wheel h5py netcdf4 h5netcdf \        
+#           rasterio rioxarray numpy \
+#           scikit-image scipy sklearn \
+#           xarray dask distributed zarr nc-time-axis \
+#           pandas geopandas \
+#           sentineleof elevation \
+#           matplotlib seaborn geoviews hvplot datashader bokeh \
+#           xmltodict joblib tqdm        
