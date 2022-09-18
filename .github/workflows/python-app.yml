@@ -66,7 +66,9 @@ jobs:
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
         sudo make install
-        sudo pip install -e ./pygmtsar
+        ls -l ./
+        ls -l ./pygmtsar/
+        sudo pip install -e ./pygmtsar/
     - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
