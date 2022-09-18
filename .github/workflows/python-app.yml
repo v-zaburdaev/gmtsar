@@ -57,7 +57,7 @@ jobs:
         
     - name: Compile libs
       run: |
-        sudo git clone --branch "$BRANCH" "$GIT" ./
+        sudo git clone --branch master https://github.com/gmtsar/gmtsar ./
         sudo autoconf
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
