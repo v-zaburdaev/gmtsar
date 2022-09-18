@@ -57,8 +57,7 @@ jobs:
         
     - name: Clone libs
       run: |
-        sudo git clone --branch master https://github.com/gmtsar/gmtsar GMTSAR
-
+        sudo git clone --branch master https://github.com/mobigroup/gmtsar GMTSAR
     - name: Compile libs
       working-directory: GMTSAR
       run: |        
