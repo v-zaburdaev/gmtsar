@@ -23,19 +23,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-        
-    - name: Install python dependencies
-      run: |
-        ls -l
-        pip install wheel h5py netcdf4 h5netcdf \        
-          rasterio rioxarray numpy \
-          scikit-image scipy sklearn \
-          xarray dask distributed zarr nc-time-axis \
-          pandas geopandas \
-          sentineleof elevation \
-          matplotlib seaborn geoviews hvplot datashader bokeh \
-          xmltodict joblib tqdm        
-    
     - name: Install dependencies
       run: |
         uname -a
@@ -67,11 +54,7 @@ jobs:
         sudo apt install -y gmt
         # fix for missed "gs" utility and git and make tools
         sudo apt install -y git make    
-    - name: Clone libs
-      run: |
-        sudo git clone --branch master https://github.com/mobigroup/gmtsar GMTSAR
     - name: Compile libs
-      working-directory: GMTSAR
       run: |        
         sudo autoconf
         sudo ./configure --with-orbits-dir=/tmp
@@ -80,4 +63,14 @@ jobs:
         ls -l ./
         ls -l ./pygmtsar/
         sudo pip install -e ./pygmtsar/
-    
+    - name: Install python dependencies
+      run: |
+        ls -l
+        sudo pip install wheel h5py netcdf4 h5netcdf \        
+          rasterio rioxarray numpy \
+          scikit-image scipy sklearn \
+          xarray dask distributed zarr nc-time-axis \
+          pandas geopandas \
+          sentineleof elevation \
+          matplotlib seaborn geoviews hvplot datashader bokeh \
+          xmltodict joblib tqdm        
