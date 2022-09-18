@@ -60,8 +60,7 @@ jobs:
         sudo ./configure --with-orbits-dir=/tmp
         sudo make
         sudo make install
-        ls -l ./
-        ls -l ./pygmtsar/
+        export PATH=$PATH:/home/runner/work/gmtsar/gmtsar/bin
         sudo pip3 install -e ./pygmtsar/
     - name: Download datasets
       working-directory: tests
